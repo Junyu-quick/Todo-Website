@@ -1,0 +1,120 @@
+/* style for the settings */
+
+:root {
+    --standard-grey : rgba(217, 217, 217, 1);
+}
+
+/* settings sidebar */
+.settings-sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 485px;
+    background-color: var(--standard-grey);
+    right: -500px;
+    top: 0px;
+    z-index: 100;
+
+}
+
+
+.settings-back-button {
+    display: inline-block;
+    position: relative;
+    top: 14px;
+}
+
+.settings-title {
+    display: inline-block;
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight:700;
+    margin-left: 280px;
+
+}
+
+.nav, .settings-content {
+    text-align: right;
+    font-family: caveat;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding-bottom: 15px;
+    padding-right: 40px;
+}
+
+/* quote */
+.quote-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.quote-number {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border-radius:  10px;
+    background-color: darkgrey;
+    width: 120px;
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.2rem;
+}
+
+.quote-sentence-description  label {
+    flex: 0 0 auto;
+    margin-left: 10px;
+}
+
+.quote-sentence-description input {
+    background-color: var(--standard-grey);
+    border: none;
+}
+
+.quote-circle {
+    margin-right: 10px;
+}
+
+#quote-interval {
+    margin-left: 300px;
+    height: 90px;
+}
+
+.add-quote-button {
+    margin-left: 225px;
+}
+
+
+/* about */
+.about-text {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.about-text div {
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
+/* animation */
+
+@keyframes move-in-left {
+    0% {
+        right: -500px;
+    }
+
+    60%,
+    100% {
+        right: 0px;
+    }
+
+    80% {
+        right: -10px;
+    }
+}
+
+.move-in-left {
+    animation: move-in-left 0.7s ease-out forwards;
+}
+
+.move-in-right {
+    animation: move-in-left 0.7s ease-out reverse forwards;
+
+}

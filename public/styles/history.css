@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Noto+Serif&family=Roboto&display=swap');
+
+:root {
+    --standard-grey : rgba(217, 217, 217, 1);
+}
+
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(122, 122, 122, 0.31);
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+}
+
+body {
+    font-size: 20px;
+}
+
+
+/* top section */
+.top-section {
+    height: 150px;
+    display: flex;
+}
+
+.history-page-title {
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+#settings {
+    position: fixed;
+    margin-top: 20px;
+    margin-left: calc(100vw - 128px);
+}
+
+/* middle section */
+
+
+.today-quote {
+    font-family: caveat;
+    font-size: 2.2rem;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 15vh;
+    margin-bottom: 80px;
+}
+
+/* bottom section */
+
+
+.format-change-container {
+    height: 70px;
+}
+
+.note-hr {
+    margin-left: 70px;
+    margin-right: 70px;
+    margin-bottom: 20px;
+
+}
+
+#format-button {
+    font-family: caveat;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: none;
+    height: 60px;
+    width: 120px;
+    border-radius: 25px;
+    background-color: var(--standard-grey);
+    text-align: center;
+    line-height: 60px;
+    padding-right: 7px;
+    margin-left: calc(100vw - 225px);
+}
+
+.note-select-button {
+    height: 30px;
+    text-align: right;
+    padding-right: 80px;
+    margin-bottom: 15px;
+    font-family: caveat;
+    font-size: 25px;
+    font-weight: 350;
+}
+
+/* work note */
+.today-work-container,
+.today-non-work-container {
+    margin-bottom: 90px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.today-work-container-scroll,
+.today-non-work-container-scroll {
+    display: flex;
+} 
+
+.work-note {
+    margin-right: 100px;
+}
+
+.note-header{ 
+    height: 90px;
+    display: relative;
+    padding-bottom: 20px;
+}
+
+.note-date {
+    padding-top: 15px;
+    padding-left: 20px;
+    font-family: caveat;
+    font-size: 1rem;
+    font-weight: 300;
+}
+.edit-button {
+    font-family: caveat;
+    font-size: 17px;
+    font-weight: 400;
+    position: absolute;
+    left: 20px;
+    top: 60px;
+}
+
+.note-title {
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight: 600;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40px;
+}
+
+.note-middle {
+    overflow-x: hidden;
+    overflow-y: overlay;
+    scroll-behavior: smooth;
+    height: 510px;
+    width: 429px;
+}
+
+.note-line {
+    display: flex;
+    margin-bottom: 3px;
+}
+
+.note-bullet-point {
+    flex: 0 0 auto;
+    margin-left: 20px;
+    height: 20px;
+    width: 20px;
+    margin-top: 3px;
+}
+
+.note-content {
+    margin-left: 28px;
+    width: 241px;
+    font-family: caveat;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.note-timer {
+    font-family: caveat;
+    font-weight: 400;
+    font-size: 1rem;
+    width: 47px;
+    overflow: visible;
+}
+
+.note-mover {
+    margin-left: 18px;
+    margin-right: 20px;
+}
+
+
+
+
+
+/* utility class */
+.big-font {
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.medium-font {
+    font-family: caveat;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.small-font {
+    font-family: caveat;
+    font-size: 1rem;
+    font-weight:400;
+}

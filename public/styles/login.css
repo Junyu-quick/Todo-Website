@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Noto+Serif&family=Roboto&display=swap');
+
+:root {
+    --Rainbow: linear-gradient(66deg, rgba(255, 0, 0, 0.20) -7.13%, rgba(255, 88, 88, 0.20) 63.92%, rgba(255, 255, 255, 0.00) 96.98%), linear-gradient(117deg, #1998B4 0%, rgba(115, 198, 217, 0.77) 23.36%, rgba(106, 121, 197, 0.59) 40.64%, rgba(70, 136, 193, 0.34) 66.37%, rgba(0, 163, 255, 0.71) 86.87%, rgba(25, 152, 180, 0.00) 100%);    
+}
+
+
+
+.background-container {
+    background: var(--Rainbow);
+    box-shadow: 0px 4px 82px -5px rgba(189, 0, 255, 0.29) inset;
+    height: 100vh;
+}
+
+.title {
+    height: 10vh;
+    text-align: center;
+    font-family: caveat;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    padding-top: 5vh;
+}
+
+.login-container {
+    background: rgba(0, 78, 103, 0.21);
+    position: relative;
+    margin: auto;
+    width: 650px;
+}
+
+.login-title {
+    width: auto;
+    height: 100px;
+    text-align: center;
+    font-family: caveat;
+    font-size: 3rem;
+    font-weight: 800;
+    padding-top: 90px;
+}
+
+
+.login-container input {
+    display: block;
+    width: 550px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 45px;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 10px;
+    text-indent: 20px;
+    font-size: 1rem;
+
+}
+
+.login-container input::placeholder {
+    font-size: 1rem;
+    font-family: arial;
+}
+
+.login-container button {
+    display: block;
+    font-size: 1.5rem;
+    font-family: caveat;
+    width: 400px;
+    height: 60px;
+    border: none;
+    border-radius: 31px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 65px;
+    margin-bottom: 5px;
+    background-color: #D9D9D9;
+}
+
+.submit:hover {
+    background-color: #a3a1a3;
+    transition: background-color 0.1s ease ;
+}
+
+.submit:active {
+    background-color: #e7e4e4;
+    transition: background-color 0.1s ease ;
+}
+
+.login-container .alt-login-text {
+    text-align: center;
+    vertical-align: baseline;
+    font-family: caveat;
+    font-size: 1.25rem;
+}
+
+.login-container hr {
+    margin-top: 0px;
+    border-color: black;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.login-container .google-login img {
+    display: block;
+    width: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    padding-bottom: 80px;
+}
+
+#errorText {
+    display: none;
+    position: absolute;
+    left: 197px;
+    top: 490px;
+    width: 270px;
+    font-size: 1rem;
+    color: red;
+}
+
+.create-or-login {
+    cursor: pointer;
+    font-family: caveat;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.create-or-login:hover {
+    color:rgba(6, 58, 88, 0.71);
+}
+
+
+#login-password-reconfirm {
+    display: none;
+}
+
+#passwordText {
+    display: none;
+    font-size: 1rem;
+    color: red;
+    text-align: center;
+}
