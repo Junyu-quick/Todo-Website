@@ -27,7 +27,7 @@ export function createSideBarElement() {
             </svg>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="321" height="1359" viewBox="0 0 321 1359" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M287 0H0V1359H287V362.608C290.683 358.625 321 325.251 321 305.932V177.068C321 154.932 290.683 124.033 287 120.361V0Z" fill="#D9D9D9"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M287 0H0V1359H287V362.608C290.683 358.625 321 325.251 321 305.932V177.068C321 154.932 290.683 124.033 287 120.361V0Z" fill="#ECBEA3"/>
           <foreignObject x="0" y="0" width="287" height="1247"> 
                 <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%;"> 
                     <div class="big-font page-sidebar-title">

@@ -9,17 +9,18 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: #b0cece;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: rgba(122, 122, 122, 0.31);
     border-radius: 10px;
-    border: 3px solid #ffffff;
+    border: 3px solid #b0cece;
 }
 
 body {
     font-size: 20px;
+    background-color: #b0cece;
 }
 
 

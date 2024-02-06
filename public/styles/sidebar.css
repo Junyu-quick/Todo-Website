@@ -1,19 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Noto+Serif&family=Roboto&display=swap');
 /* style for sidebar*/
-
 
 /* page sidebar */
 .page-sidebar {
     position: fixed;
     top: 0px;  
     width: 285px;
-    left: -285px;
+    left: -288px;
     overflow: visible;
-
+    font-family: caveat;
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .page-sidebar-title {
     margin-top: 15px;
     margin-left: 20px;
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .page-sidebar-section {
@@ -66,4 +71,8 @@
 .move-in-right-page {
     animation: move-in-right-page 0.7s ease-out forwards;
 
+}
+
+hr {
+    border-color: black;
 }

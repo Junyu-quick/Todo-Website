@@ -6,16 +6,18 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: #b0cece;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: rgba(122, 122, 122, 0.31);
     border-radius: 10px;
-    border: 3px solid #ffffff;
+    border: 3px solid #b0cece;
 }
 
-
+body {
+    background-color: #b0cece;
+}
 /* top section */
 .top-section {
     height: 150px;
@@ -84,7 +86,8 @@
     top: 40px;
 }
 
-.note-middle {
+.work-note-middle,
+.nonwork-notemiddle {
     overflow-x: hidden;
     overflow-y: overlay;
     scroll-behavior: smooth;

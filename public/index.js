@@ -4,6 +4,8 @@ import { createLongTermElement } from "./src/pages/longterm.js";
 import { createTodayElement } from "./src/pages/today.js";
 import { pathChange } from "./startup/path.js";
 
+//!before production, check if local storage jwt exist, before redirectiing to non-login page from addressbar 
+
 const pathList = {
     '/': createLoginElement,
     '/login': createLoginElement,
