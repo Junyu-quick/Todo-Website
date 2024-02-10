@@ -87,7 +87,7 @@ body {
 }
 
 .work-note-middle,
-.nonwork-notemiddle {
+.non-work-note-middle {
     overflow-x: hidden;
     overflow-y: overlay;
     scroll-behavior: smooth;
@@ -130,7 +130,8 @@ body {
 }
 
 /* bottom section note */
-.work-note-bottom {
+.work-note-bottom,
+.non-work-note-bottom {
     height: 50px;
     width: 100%;
     font-family: caveat;
@@ -138,7 +139,8 @@ body {
 }
 
 
-.work-note-desc-input-container {
+.work-note-desc-input-container,
+.non-work-note-desc-input-container {
     border-radius: 15px;
     border-color: black;
     border-width: 1px;
@@ -150,7 +152,8 @@ body {
     display: inline-block;
 }
 
-.work-note-eta-input-container {
+.work-note-eta-input-container,
+.non-work-note-eta-input-container {
     border-radius: 15px;
     border-color: black;
     border-width: 1px;
@@ -162,7 +165,8 @@ body {
 
 }
 
-#work-note-eta-input {
+#work-note-eta-input,
+#non-work-note-eta-input {
     border-radius: 15px;
     border-color: black;
     border-width: 1px;
@@ -173,7 +177,8 @@ body {
     font-size: 1rem;
 }
 
-#work-note-desc-input {
+#work-note-desc-input,
+#non-work-note-desc-input {
     border-radius: 15px;
     border-color: black;
     border-width: 1px;
@@ -184,7 +189,8 @@ body {
     font-size: 1rem;
 }
 
-#submit-work-form-button {
+#submit-work-form-button,
+#submit-non-work-form-button {
     border-radius: 15px;
     border-color: black;
     border-width: 1px;

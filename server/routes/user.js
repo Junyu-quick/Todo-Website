@@ -3,6 +3,8 @@
 //--they input their username and pw, then if valid, then direct to today page
 //-- if wrong, show red text w error msg
 
+//todo create the create user route here ==> create the document for both user and work/nonwork(got default values alr ) 
+
 const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();

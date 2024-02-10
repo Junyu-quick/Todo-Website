@@ -5,22 +5,28 @@ const mongoose = require('mongoose');
 const toDoSchema = new mongoose.Schema({
     task: {
         type: String,
-        required: true
+        required: true,
+        default: 'Begin your journey!'
     },
     eta: {
         type: String,
-        required: true
+        required: true,
+        default: '00'
+
     },
     completed: {
         type: Boolean, 
-        required: true
+        required: true,
+        default: false
+
     }
 })
 
 const dateSchema = new mongoose.Schema({
     date: {
         type: Date,
-        required: true
+        required: true,
+        default: new Date()
     },
     toDo: [toDoSchema]
 })

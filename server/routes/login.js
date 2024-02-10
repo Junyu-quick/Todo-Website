@@ -40,7 +40,7 @@ router.post('/submit', async (req, res) => {
     if (!validPassword) res.status(400).send('Invalid Username or Passwword. ');
     //happy path! pw is correct
     //set header to jwt and return 200 
-    const token = user.generateAuthToken;
+    const token = user.generateAuthToken();
     res.header('x-auth-token', token).send();
 })
 

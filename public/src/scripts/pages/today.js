@@ -58,7 +58,7 @@ if (!jwt) {
             })
 
             nonWorkData.forEach((work) => {
-                const noteContentElement = document.querySelector('.nonwork-note-middle');
+                const noteContentElement = document.querySelector('.non-work-note-middle');
                 noteContentElement.appendChild(noteLineHTML);
             })
         })

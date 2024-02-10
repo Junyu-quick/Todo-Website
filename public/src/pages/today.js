@@ -3,6 +3,7 @@
 import { createSettingsElement } from "../components/settings.js";
 import { createSideBarElement } from "../components/sidebar.js";
 import { removeLinkTags, removeScriptTags } from "../utils/removetags.js";
+import {createTaskElement} from "../scripts/components/createtask.js";
 
 
 export function createTodayElement() {
@@ -100,7 +101,7 @@ export function createTodayElement() {
                                 <input placeholder='Eta' id='work-note-eta-input'>
                                 </input>
                             </div>
-                            <button id='submit-work-form-button'>
+                            <button id='submit-work-form-button' type='submit'>
                             Confirm
                             </button>
                         </form>
@@ -120,7 +121,7 @@ export function createTodayElement() {
                         <div class="edit-button">Edit</div>
                         <div class="note-title">Work</div>
                     </div>
-                    <div class="nonwork-note-middle">
+                    <div class="non-work-note-middle">
                         <div class="note-line">
                             <div class="note-bullet-point">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,6 +143,21 @@ export function createTodayElement() {
                             </div>
                         </div>
                     </div>
+                    <div class="non-work-note-bottom">
+                        <form id='non-work-note-form'>
+                            <div class='non-work-note-desc-input-container'>
+                                <input placeholder='Enter your task' id='non-work-note-desc-input'>
+                                </input>
+                            </div>
+                            <div class='non-work-note-eta-input-container'>
+                                <input placeholder='Eta' id='non-work-note-eta-input'>
+                                </input>
+                            </div>
+                            <button id='submit-non-work-form-button' type='submit'>
+                            Confirm
+                            </button>
+                        </form>
+                    </div>
                 </div>
                 </foreignObject>
             </svg>
@@ -162,6 +178,8 @@ export function createTodayElement() {
     // });
     console.log(window.location.pathname)
 
+    //create task element
+    createTaskElement();
 
     document.head.appendChild(cssLink);
     document.head.appendChild(jsScript);
