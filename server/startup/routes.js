@@ -6,6 +6,7 @@ const login = require('../routes/login.js');
 const today = require('../routes/today.js');
 const longterm = require('../routes/longterm.js');
 const history = require('../routes/history.js');
+const error = require('../middleware/error.js');
 
 module.exports = function(app) {
     app.use(express.static(path.join(__dirname, '../../public')));
@@ -16,4 +17,5 @@ module.exports = function(app) {
     app.use('/today', today);
     app.use('/longterm', longterm);
     app.use('/history', history);
+    app.use(error);
 }

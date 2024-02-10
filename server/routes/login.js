@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {User, validate} = require('../models/user.js')
+const auth = require('../middleware/auth.js');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
@@ -18,20 +19,10 @@ router.get('', (req, res) => {
 
 });
 
-router.post('/jwt', (req, res) => {
-    const token = req.header('x-auth-token');
-
-    if (!token) return res.status(401).send('Access Denied. No token provided.');
-
-    try {
-        const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
-        //throws error if unsuccesful
-        //TODO might send back decoded data in future for caching so dont need verfiy evrytime during same session
-        res.status(200).send();
-    }
-    catch(ex) {
-        res.status(400).send('Invalid token.');
-    }
+router.post('/jwt', auth, (req, res) => {
+    const decoded = req.user;
+    //todo might send decoded data in future 
+    res.send();
 });
 
 router.post('/submit', async (req, res) => {

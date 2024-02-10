@@ -23,7 +23,7 @@ const dateSchema = new mongoose.Schema({
     toDo: [toDoSchema]
 })
 
-const workSchema = new mongoose.Schema({
+const nonWorkSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -33,6 +33,6 @@ const workSchema = new mongoose.Schema({
     dates: [dateSchema]
 })
 
-const Work = mongoose.model('Work', workSchema);    
+const NonWork = mongoose.model('NonWork', nonWorkSchema);    
 
-exports.Work = Work;
+exports.NonWork = NonWork;

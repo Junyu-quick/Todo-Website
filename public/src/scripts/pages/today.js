@@ -23,7 +23,7 @@ if (!jwt) {
             return response.json();
         })
         .then(data => {
-            //eg. workData = [{task:...., eta:..., status:..}, {task:...., eta:..., status:..}]
+            //eg. workData = [{task:...., eta:..., completed:..}, {task:...., eta:..., status:..}]
             const {workData, nonWorkData} = data;
             const noteLineHTML = 
                 `
@@ -48,6 +48,10 @@ if (!jwt) {
                 </div>
             </div>
                 `
+            //display default
+            if (workData === null && nonWorkData === null) return;
+
+            //display user's notes 
             workData.forEach((work) => {
                 const noteContentElement = document.querySelector('.work-note-middle');
                 noteContentElement.appendChild(noteLineHTML);

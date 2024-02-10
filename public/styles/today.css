@@ -91,7 +91,7 @@ body {
     overflow-x: hidden;
     overflow-y: overlay;
     scroll-behavior: smooth;
-    height: 510px;
+    height: 460px;
     width: 429px;
 }
 
@@ -127,4 +127,72 @@ body {
 .note-mover {
     margin-left: 18px;
     margin-right: 20px;
+}
+
+/* bottom section note */
+.work-note-bottom {
+    height: 50px;
+    width: 100%;
+    font-family: caveat;
+    font-size: 1rem;
+}
+
+
+.work-note-desc-input-container {
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    height: 30px;
+    width: 225px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.work-note-eta-input-container {
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    height: 30px;
+    width: 50px;
+    display: inline-block;
+    margin-left: 15px;
+
+
+}
+
+#work-note-eta-input {
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    font-family: caveat;
+    font-size: 1rem;
+}
+
+#work-note-desc-input {
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    font-family: caveat;
+    font-size: 1rem;
+}
+
+#submit-work-form-button {
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1px;
+    width: 75px;
+    height: 35px;
+    margin-left: 20px;
+    display:inline-block;
+    margin-left: 20px;
+    padding-left: 10px;
+    font-family: caveat;
 }
