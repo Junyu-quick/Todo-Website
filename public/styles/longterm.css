@@ -95,6 +95,7 @@ body {
     width: 429px;
 }
 
+/* standard for all pages */
 .note-line {
     display: flex;
     margin-bottom: 3px;
@@ -121,10 +122,19 @@ body {
     font-weight: 400;
     font-size: 1rem;
     width: 47px;
-    overflow: visible;
+    margin-left: 20px;
 }
 
 .note-mover {
     margin-left: 18px;
     margin-right: 20px;
+}
+
+.note-content input,
+.note-timer input {
+    background-color:#b0cece;
+    border: none;
+    font-family: caveat;
+    font-size: 1rem;
+    width: 100%
 }

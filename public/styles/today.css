@@ -95,20 +95,21 @@ body {
     width: 429px;
 }
 
-.note-line {
+/* standard for all pages */
+.work-note-line {
     display: flex;
     margin-bottom: 3px;
 }
 
-.note-bullet-point {
+.work-note-bullet-point {
     flex: 0 0 auto;
     margin-left: 20px;
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 24px;
     margin-top: 3px;
 }
 
-.note-content {
+.work-note-content {
     margin-left: 28px;
     width: 241px;
     font-family: caveat;
@@ -116,17 +117,28 @@ body {
     font-size: 1rem;
 }
 
-.note-timer {
+.work-note-eta {
     font-family: caveat;
     font-weight: 400;
     font-size: 1rem;
     width: 47px;
-    overflow: visible;
+    margin-left: 20px;
 }
 
-.note-mover {
+.work-note-delete {
     margin-left: 18px;
     margin-right: 20px;
+    margin-top: 2px;
+    height: 24px;
+}
+
+.work-note-content input,
+.work-note-eta input {
+    background-color:#b0cece;
+    border: none;
+    font-family: caveat;
+    font-size: 1rem;
+    width: 100%
 }
 
 /* bottom section note */
@@ -201,4 +213,13 @@ body {
     margin-left: 20px;
     padding-left: 10px;
     font-family: caveat;
+}
+
+.note-content input,
+.note-timer input {
+    background-color:#b0cece;
+    border: none;
+    font-family: caveat;
+    font-size: 1rem;
+    width: 100%
 }

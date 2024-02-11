@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./test1.js" type="module"></script>
-    <title>Document</title>
+  <title>Styled Radio Buttons Example</title>
+  <style>
+    /* Style the radio buttons */
+    .radio-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .radio-container input[type="radio"] {
+      display: none;
+    }
+
+    .radio-container label {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* Style the checked state of the radio buttons */
+    .radio-container input[type="radio"] + label::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #555;
+      background-color: #fff;
+      vertical-align: middle;
+    }
+
+    .radio-container input[type="radio"]:checked + label::before {
+      background-color: #555;
+    }
+
+    /* Style the selected language display */
+    #selectedLanguage {
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        test123 git 
-    </div>
+  <h3>Select your preferred programming language:</h3>
+  <div class="radio-container">
+    <input type="radio" id="java" name="language" value="java">
+    <label for="java">Java</label>
+  </div>
+
+  <div class="radio-container">
+    <input type="radio" id="python" name="language" value="python">
+    <label for="python">Python</label>
+  </div>
+
+  <div class="radio-container">
+    <input type="radio" id="javascript" name="language" value="javascript">
+    <label for="javascript">JavaScript</label>
+  </div>
+
+  <p>Selected language: <span id="selectedLanguage"></span></p>
+
+  <script>
+    // Get the selected radio button value and display it
+    function displaySelectedLanguage() {
+      const selectedLanguage = document.querySelector('input[name="language"]:checked').value;
+      document.getElementById('selectedLanguage').textContent = selectedLanguage;
+    }
+
+    // Add event listeners to radio buttons
+    const radioButtons = document.querySelectorAll('input[name="language"]');
+    radioButtons.forEach(function(radioButton) {
+      radioButton.addEventListener('change', displaySelectedLanguage);
+    });
+  </script>
 </body>
 </html>

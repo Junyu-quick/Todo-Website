@@ -23,7 +23,7 @@ export function createTaskElement() {
             eta: workEtaValue
         };
 
-        fetch('http://localhost/createtask/work', {
+        fetch('http://localhost/task/work', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,6 +33,7 @@ export function createTaskElement() {
         })
             .then(response => {
                 if (response.ok) {
+         //todo change the noteline to the same as today.js
                     const noteLineHTML = 
                         `
                     <div class="note-line">
@@ -82,7 +83,7 @@ export function createTaskElement() {
             eta: nonWorkEtaValue
         };
 
-        fetch('http://localhost/createtask/nonwork', {
+        fetch('http://localhost/task/nonwork', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,4 +127,7 @@ export function createTaskElement() {
                 console.log('Error: ', error);
             })
     })
+
+
+
 };
