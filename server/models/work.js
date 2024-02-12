@@ -26,7 +26,11 @@ const dateSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
-        default: new Date()
+        default: function() {
+            const currentDate = new Date();
+            currentDate.setHours(0,0,0,0);
+            return currentDate;
+        }
     },
     toDo: [toDoSchema]
 })

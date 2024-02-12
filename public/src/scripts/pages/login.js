@@ -63,6 +63,9 @@ changeModeElement.addEventListener('click', function () {
         const incorrectPasswordTextElement = document.querySelector('#passwordText');
         incorrectPasswordTextElement.style.display = 'none';
 
+        const errorText = document.getElementById('errorText');
+        errorText.style.display = 'none';
+
         const reconfirmPasswordElement = document.querySelector('#login-password-reconfirm');
         reconfirmPasswordElement.style.display = 'block';
 
@@ -79,6 +82,9 @@ changeModeElement.addEventListener('click', function () {
         const incorrectPasswordTextElement = document.querySelector('#passwordText');
         incorrectPasswordTextElement.style.display = 'none';
 
+        const errorText = document.getElementById('errorText');
+        errorText.style.display = 'none';
+
         const reconfirmPasswordElement = document.querySelector('#login-password-reconfirm');
         reconfirmPasswordElement.style.display = 'none';
     }
@@ -89,16 +95,22 @@ changeModeElement.addEventListener('click', function () {
 formElement.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    //remove errror messages
+    const errorText = document.getElementById('errorText');
+    errorText.style.display = 'none';
+
+
     const usernameInput = document.getElementById('login-username');
     const passwordInput = document.getElementById('login-password');
-    const errorText = document.getElementById('errorText');
 
     const loginData = {
         username: usernameInput.value,
         password: passwordInput.value
     };
-    if (changeModeElement.textContent === 'Login') {
+    console.log('check');
+    if (changeModeElement.textContent === 'Create an account') {
         //login, submit to server
+        console.log('check');
         fetch('http://localhost:3000/login/submit', {
             method: 'POST',
             headers: {
@@ -122,11 +134,13 @@ formElement.addEventListener('submit', function (event) {
                 } else {
                     errorText.style.display = 'block';
                     errorText.textContent = "Username or password is incorrect."
+                    console.log('logging in');
                     throw new Error('Username or Password is incorrect')
+                    
                 }
             })
             .catch(error => {
-                console.log('Error:', error)
+                console.log(error)
             })
         
         usernameInput.value = '';
@@ -155,7 +169,7 @@ formElement.addEventListener('submit', function (event) {
             .then(response => {
                 if (response.ok) {
                     console.log('Username and password are valid.');
-                    const jwt = response.body.headers.get('x-auth-token');
+                    const jwt = response.headers.get('x-auth-token');
                     localStorage.setItem('jwt', jwt);
 
                     history.pushState({}, '', '/today');

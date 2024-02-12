@@ -20,7 +20,7 @@ router.get('/jwt', auth, async(req, res) => {
 
     //if auth passed, then confirm will have user doc, but if no then error handling middle ware will settle 
     //to retrieve the the array of work todos
-    const work = await Work.findOne({userId: decoded._id});
+    let work = await Work.findOne({userId: decoded._id});
     if (work === null) return res.status(404).send("Entire work document not generated, display default.")
 
     let workData;
@@ -63,6 +63,8 @@ router.get('/jwt', auth, async(req, res) => {
         workData: workData,
         nonWorkData: nonWorkData
     };
+    
     res.send(data)
 })
+
 module.exports = router

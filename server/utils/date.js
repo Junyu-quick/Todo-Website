@@ -7,5 +7,6 @@ module.exports = function (date) {
         date.getDate() === currentDate.getDate()
     );
 
+    console.info('same date document found.')
     return isSameDay
 }
