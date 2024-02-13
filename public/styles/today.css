@@ -223,3 +223,9 @@ body {
     font-size: 1rem;
     width: 100%
 }
+
+.invalid-input-border {
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+}

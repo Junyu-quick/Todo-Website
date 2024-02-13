@@ -42,36 +42,9 @@
   </style>
 </head>
 <body>
-  <h3>Select your preferred programming language:</h3>
-  <div class="radio-container">
-    <input type="radio" id="java" name="language" value="java">
-    <label for="java">Java</label>
-  </div>
-
-  <div class="radio-container">
-    <input type="radio" id="python" name="language" value="python">
-    <label for="python">Python</label>
-  </div>
-
-  <div class="radio-container">
-    <input type="radio" id="javascript" name="language" value="javascript">
-    <label for="javascript">JavaScript</label>
-  </div>
-
-  <p>Selected language: <span id="selectedLanguage"></span></p>
-
-  <script>
-    // Get the selected radio button value and display it
-    function displaySelectedLanguage() {
-      const selectedLanguage = document.querySelector('input[name="language"]:checked').value;
-      document.getElementById('selectedLanguage').textContent = selectedLanguage;
-    }
-
-    // Add event listeners to radio buttons
-    const radioButtons = document.querySelectorAll('input[name="language"]');
-    radioButtons.forEach(function(radioButton) {
-      radioButton.addEventListener('change', displaySelectedLanguage);
-    });
-  </script>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="9" stroke="#7E869E" stroke-opacity="0.25" stroke-width="1.2"/>
+    <path d="M7.5 12H16.5" stroke="#222222" stroke-width="1.2"/>
+    </svg>
 </body>
 </html>

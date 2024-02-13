@@ -104,17 +104,14 @@ router.post('/updatework', auth, async (req, res) => {
     const decoded = req.user;
     
     const newTask = req.body;
+    console.log(req.body);
 
     let work = await Work.findOne({userId: decoded._id});
 
-    const dateObject = work.dates.find(element => isSameDay(element.date));
-    if (!dateObject) res.send('Date obj cant be found, shouldnt happen')
+    let dateObject = work.dates.find(element => isSameDay(element.date));
+    let i = work.dates.indexOf(dateObject);
 
-    //edit the specific task obj
-    const taskObject = dateObject.toDo
-    if (!taskObject) res.send('Task obj cant be found, shouldnt happen')
-   
-    taskObject = newTask
+    work.dates[i].toDo = newTask;
 
     await work.save();
 

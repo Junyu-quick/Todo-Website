@@ -70,5 +70,4 @@ export function settingScript() {
         });
     }
 
-    console.log('setting script');
 };

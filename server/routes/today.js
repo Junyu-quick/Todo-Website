@@ -21,13 +21,15 @@ router.get('/jwt', auth, async(req, res) => {
     //if auth passed, then confirm will have user doc, but if no then error handling middle ware will settle 
     //to retrieve the the array of work todos
     let work = await Work.findOne({userId: decoded._id});
+    
     if (work === null) return res.status(404).send("Entire work document not generated, display default.")
 
     let workData;
     try {
         work.dates.some((date) => {
-            if (isSameDay(date.date)){
+            if (isSameDay(date.date)) {
                 workData = date.toDo
+                console.info("in try, workData: ", workData)
                 return true 
             }
         }) 
@@ -59,11 +61,13 @@ router.get('/jwt', auth, async(req, res) => {
     
     //client side handle if not workData,nonWorkData for the day
     //to send the todos for work and nonwork to client side  
+    const user = await User.findOne({_id: decoded._id});
+
     const data = {
         workData: workData,
-        nonWorkData: nonWorkData
+        nonWorkData: nonWorkData,
+        username: user.username
     };
-    
     res.send(data)
 })
 

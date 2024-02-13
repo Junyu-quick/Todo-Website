@@ -13,7 +13,6 @@ export function createSettingsElement() {
 
 
 
-    console.log('setting script file path: ' + window.location.href);
 
       
     
@@ -150,6 +149,5 @@ export function createSettingsElement() {
     //settings script
     settingScript();
     
-    console.log("setting content " + window.location.href);
     return;
 }

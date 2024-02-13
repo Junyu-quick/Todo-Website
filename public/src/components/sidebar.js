@@ -55,7 +55,6 @@ export function createSideBarElement() {
     //add as the first child of middle section classed eleement
     let middleSectionElement = document.querySelector('.middle-section')
     middleSectionElement.firstElementChild.insertAdjacentElement('beforebegin', sideBarElement);
-    console.log('dddd');
    
     document.head.appendChild(cssLink);
     // document.head.appendChild(jsScript);

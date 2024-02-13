@@ -15,7 +15,6 @@ const pathList = {
 };
 
 const currentPath = window.location.pathname;
-console.log(window.location.pathname);
 
 //delete aft, next time my domain will be starting point 
 history.pushState({}, '', '/test');

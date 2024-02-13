@@ -13,9 +13,7 @@ export function sideBarScript() {
     let sidebarOpeningElement = document.querySelector('.page-sidebar-opening');
     let sidebarElement = document.querySelector('.page-sidebar');
 
-    console.log(sidebarOpeningElement);
     sidebarOpeningElement.addEventListener('click',()=>{
-        console.log('hi');
         sidebarElement.classList.remove('move-in-left-page');
 
         setTimeout(()=> {
@@ -63,17 +61,14 @@ export function sideBarScript() {
             let url;
             event.preventDefault();
             url = String(element.getAttribute('href'));
-            console.log(url);
             history.pushState({}, '', url);
             createPage[url]();
 
             element.removeEventListener('click', changePage);
         };
 
-        console.log(element);  
         element.addEventListener('click', changePage)
     });
 
-    console.log("sidebar script")
 
 };
