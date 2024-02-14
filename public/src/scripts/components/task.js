@@ -15,12 +15,29 @@ export function createTaskElement() {
     workFormElement.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const workDescValue = document.querySelector('#work-note-desc-input').value;
-        const workEtaValue = document.querySelector('#work-note-eta-input').value;
+        const workDescElement = document.querySelector('#work-note-desc-input');
+        const workEtaElement = document.querySelector('#work-note-eta-input');
+
+        let validated = true;
+        //check if field is empty
+        for (const el of [workDescElement, workEtaElement]) {
+            //remove red border style for invalid field 
+            el.style.borderStyle = "none";
+
+            if (el.value === "") {
+                el.style.borderStyle = "solid";
+                el.style.borderWidth = "1px";
+                el.style.borderColor = "red";
+                validated = false
+            }
+        }
+        //exit listener callback if input not validated 
+        if (!validated) return;
+
 
         const workData = {
-            task: workDescValue,
-            eta: workEtaValue
+            task: workDescElement.value,
+            eta: workEtaElement.value
         };
 
         fetch('http://localhost:3000/task/work', {
@@ -45,10 +62,10 @@ export function createTaskElement() {
                             </svg>
                         </div>
                         <div class="work-note-content">
-                            <input class="edit-work-desc-input" type="text" value="${workDescValue}" required>
+                            <input class="edit-work-desc-input" type="text" value="${workDescElement.value}" required>
                         </div>
                         <div class="work-note-eta">
-                            <input class="edit-work-eta-input" type="text" value="${workEtaValue}" required>
+                            <input class="edit-work-eta-input" type="text" value="${workEtaElement.value}" required>
                         </div>
                         <div class="work-note-delete">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,6 +78,8 @@ export function createTaskElement() {
                     `;
 
                     noteContentElement.appendChild(workNoteLineElement);
+                    workDescElement.value = "";
+                    workEtaElement.value = "";
                     return;
                 }
                 return response.text()

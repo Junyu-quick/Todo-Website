@@ -63,16 +63,19 @@ body {
 
 .note-header{ 
     height: 90px;
-    display: relative;
+    position: relative;
     padding-bottom: 20px;
+    display: flex;
 }
 
-.edit-button {
+.push-button {
     font-family: caveat;
     font-size: 17px;
     font-weight: 400;
-    position: absolute;
-    left: 20px;
+    margin-left: 30px;
+    height: 20px;
+    text-align: right;
+    position: relative;
     top: 60px;
 }
 
@@ -80,10 +83,11 @@ body {
     font-family: caveat;
     font-size: 2rem;
     font-weight: 600;
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    top: 40px;
+    text-align: center; 
+    height: 57px;
+    position: relative;
+    top: 45px;
+    margin-left: 127px;
 }
 
 .work-note-middle,

@@ -29,7 +29,7 @@ router.get('/jwt', auth, async(req, res) => {
         work.dates.some((date) => {
             if (isSameDay(date.date)) {
                 workData = date.toDo
-                console.info("in try, workData: ", workData)
+                console.info("Today's work data fetched automically: ", workData)
                 return true 
             }
         }) 

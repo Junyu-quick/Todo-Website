@@ -1,11 +1,13 @@
 import { completeButtonChange } from "../../utils/completebutton.js";
-//stores the event listeners for the creating notes
-//send http req to server to store it/update it 
-//todo make into fxn n import into page/longterm.js like in history
+//1. dynamically gen page if got jwt (1)
+//2. event listeners for both work & nonwork (Total-4 as shown below)
+//-- input event listener for modifying input of desc and eta (2)
+//-- submit event listener for deleteing and changing complete status(2)
 
 let jwt = localStorage.getItem('jwt');
 console.log(jwt);
 
+//fetch default page
 if (!jwt) {
     console.log('No JWT found in local storage');
     //will display the default pg 
@@ -107,7 +109,6 @@ workNoteElement.addEventListener('input', (event) => {
             el.style.borderStyle = 'none';
 
             if (el.value === '') {
-                el.classList.add("invalid-input-border");
                 el.style.borderStyle = 'solid';
                 el.style.borderColor = 'red';
                 el.style.borderWidth = '1px';
@@ -122,7 +123,6 @@ workNoteElement.addEventListener('input', (event) => {
             el.style.borderStyle = 'none';
 
             if (el.value === '') {
-                el.classList.add("invalid-input-border");
                 el.style.borderStyle = 'solid';
                 el.style.borderColor = 'red';
                 el.style.borderWidth = '1px';
@@ -224,6 +224,7 @@ nonWorkNoteElement.addEventListener('input', (event) => {
 
 //first if is to change completed button's svg and status
 //second if is to delete
+//third if is to push tdy uncomplete task to tmr 
 workNoteElement.addEventListener('click', (event) => {
     if (event.target && event.target.closest('div').matches('.work-note-bullet-point')) {
         const completedButton = event.target.closest('div')
@@ -240,7 +241,79 @@ workNoteElement.addEventListener('click', (event) => {
     
             const inputEvent = new Event('input', {bubbles: true});
             workNoteElement.dispatchEvent(inputEvent);
-            console.log('Task is deleted in htm, wait for server deletion.')
-    }        
+            console.log('Task is deleted in html, wait for server deletion.')
+    } else if (event.target && event.target.matches('.push-button')) {
+        let workCompletedElement = Array.from(document.querySelectorAll('.work-note-bullet-point'));
+        let workDescElement = Array.from(document.querySelectorAll('.edit-work-desc-input'));
+        let workEtaElement = Array.from(document.querySelectorAll('.edit-work-eta-input'));
+
+        let taskObjectArray = [];
+        
+        workCompletedElement.forEach((el, index, array) => {
+            let completedValue = JSON.parse(el.getAttribute('data-value'));
+
+            if (completedValue === true) {
+                return;
+            }
+
+            let validated = true;
+            if (workDescElement[index].value === "") {
+                workDescElement[index].style.borderStyle = "solid";
+                workDescElement[index].style.borderColor = "red";
+                workDescElement[index].style.borderWidth = "1px";
+                setTimeout(() => {
+                    workDescElement[index].style.borderStyle = "none";
+                }, 5000)
+                validated = false;
+            }
+
+            if (workEtaElement[index].value === "") {
+                workEtaElement[index].style.borderStyle = "solid";
+                workEtaElement[index].style.borderColor = "red";
+                workEtaElement[index].style.borderWidth = "1px";
+                setTimeout(() => {
+                    workEtaElement[index].style.borderStyle = "none";
+                }, 5000)
+                validated = false;
+            }
+            
+            if (!validated) return;
+
+            let taskObject = {
+                task: workDescElement[index].value,
+                eta: workEtaElement[index].value,
+                Completed: completedValue
+            };
+
+            taskObjectArray.push(taskObject);
+
+            fetch("http://localhost:3000/task/push", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-auth-token":  jwt
+                },
+                body: JSON.stringify(taskObjectArray)
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        let pushButton = document.querySelector('.push-button');
+                        pushButton.style.color = "green";
+                        setTimeout(() => {
+                            pushButton.style.color = "black";
+                        }, 5000);
+                        console.log('tasks has been pushed. Pushed tasks: ', taskObjectArray)
+                    } else {
+                        throw new Error("updating of task failed.")
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error: ", error);
+                })
+        })
+       
+        
+
+    }     
 })
 

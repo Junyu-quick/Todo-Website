@@ -66,7 +66,7 @@ export function createTodayElement() {
                 <foreignObject x="0" y="0" width="437" height="620">
                 <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%;">
                     <div class="note-header">
-                        <div class="edit-button">Edit</div>
+                        <div class="push-button">Push</div>
                         <div class="note-title">Work</div>
                     </div>
                     <div class="work-note-middle">

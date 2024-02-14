@@ -31,10 +31,11 @@ router.post('/create', async (req, res) => {
 
     //gen work and nonwork doc
     const userId = user._id;
-    const work = new Work({userId : userId});
+    const userUserName = user.username;
+    const work = new Work({userId : userId, username: userUserName});
     await work.save();
 
-    const nonWork = new NonWork({userId: userId})
+    const nonWork = new NonWork({userId: userId, username: userUserName})
     await nonWork.save();
 
     //creating and sending jwt token

@@ -8,6 +8,7 @@ const {NonWork} = require('../models/nonwork.js');
 const auth = require('../middleware/auth.js');
 const router = express.Router();
 const isSameDay = require('../utils/date.js');
+const { route } = require('./today.js');
 
 //creating new task 
 router.post('/work', auth, async (req, res) => {
@@ -141,7 +142,32 @@ router.post('/updatenonwork', auth, async (req, res) => {
     res.send('Success. Task object updated')
 })
 
+//pushing uncomplete work tasks to the next day
+router.post('/push', auth, async (req, res) => {
+    const decoded = req.user;
 
-//deleting work task by tapping delete button
-//deleting nonwork task by tapping delete button
+    let work = await Work.findOne({userId: decoded._id});
+
+    const taskObjectArray = req.body;
+
+    let currentDate = new Date();
+    let tmrDate = new Date(currentDate);
+    tmrDate.setDate(currentDate.getDate() + 1);
+    tmrDate.setHours(0,0,0,0);
+
+
+    const dateObject =  {
+        date: tmrDate,
+        toDo: taskObjectArray
+    }
+
+    work.dates.push(dateObject);
+
+    await work.save();
+    
+    res.send("Sucessfully pushed uncompleted tasks.")
+});
+
+
+
 module.exports = router;
