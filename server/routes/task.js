@@ -161,10 +161,21 @@ router.post('/push', auth, async (req, res) => {
         toDo: taskObjectArray
     }
 
-    work.dates.push(dateObject);
+
+    if (JSON.stringify(work.dates[work.dates.length - 1].date) == JSON.stringify(tmrDate)) {
+        //2nd/more times pushing, thus tmr date obj alr created 
+        console.log('Non-first time pushing work task to tmr.')
+        work.dates[work.dates.length - 1] = dateObject;
+    } else {
+        //first time pushing, thus tmr's date obj not created
+        work.dates.push(dateObject);
+        console.log('First time pushing work task to tmr.')
+
+    }
 
     await work.save();
     
+    console.log('work task pushed successfully')
     res.send("Sucessfully pushed uncompleted tasks.")
 });
 

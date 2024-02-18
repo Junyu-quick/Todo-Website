@@ -22,7 +22,7 @@ router.get('/jwt', auth, async(req, res) => {
     //to retrieve the the array of work todos
     let work = await Work.findOne({userId: decoded._id});
     
-    if (work === null) return res.status(404).send("Entire work document not generated, display default.")
+    if (work == null) return res.status(404).send("Entire work document not generated, display default.")
 
     let workData;
     try {
