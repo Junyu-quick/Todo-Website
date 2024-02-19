@@ -16,7 +16,7 @@ export function completeButtonChange(completedButton, pageload=false) {
             <path d="M7.5 12H16.5" stroke="#222222" stroke-width="1.2"/>
             </svg>
             `
-
+        
         } else {
             completedButton.dataset.value = "true";
 

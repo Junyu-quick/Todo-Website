@@ -4,6 +4,7 @@ import { createSettingsElement } from "../components/settings.js";
 import { createSideBarElement } from "../components/sidebar.js";
 import { removeLinkTags, removeScriptTags } from "../utils/removetags.js";
 import {createTaskElement} from "../scripts/components/task.js";
+import { todayScript } from "../scripts/pages/today.js";
 
 
 export function createTodayElement() {
@@ -29,10 +30,10 @@ export function createTodayElement() {
     cssLink.href = './styles/today.css';
     cssLink.type = 'text/css';
     
-    let jsScript = document.createElement('script');
-    jsScript.src = './src/scripts/pages/today.js';
-    jsScript.type = 'module';
-    jsScript.defer = true;
+    // let jsScript = document.createElement('script');
+    // jsScript.src = './src/scripts/pages/today.js';
+    // jsScript.type = 'module';
+    // jsScript.defer = true;
 
 
 
@@ -65,7 +66,7 @@ export function createTodayElement() {
                 </svg>
                 <foreignObject x="0" y="0" width="437" height="620">
                 <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%;">
-                    <div class="note-header">
+                    <div class="work-note-header">
                         <div class="push-button">Push</div>
                         <div class="note-title">Work</div>
                     </div>
@@ -90,6 +91,7 @@ export function createTodayElement() {
                 </foreignObject>
             </svg>
         </div>
+
         <div class="today-non-work-container note">
             <svg width="440" height="625" xmlns="http://www.w3.org/2000/svg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="437" height="625" viewBox="0 0 437 623" fill="none">
@@ -97,31 +99,11 @@ export function createTodayElement() {
                 </svg>
                 <foreignObject x="0" y="0" width="437" height="620">
                 <div xmlns="http://www.w3.org/1999/xhtml" style="width: 100%; height: 100%;">
-                    <div class="note-header">
-                        <div class="edit-button">Edit</div>
-                        <div class="note-title">Work</div>
+                    <div class="non-work-note-header">
+                        <div class="non-work-push-button">Push</div>
+                        <div class="non-work-note-title">Non-Work</div>
                     </div>
                     <div class="non-work-note-middle">
-                        <div class="note-line">
-                            <div class="note-bullet-point">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M18.5 10C18.5 11.1162 18.2801 12.2215 17.853 13.2528C17.4258 14.2841 16.7997 15.2211 16.0104 16.0104C15.2211 16.7997 14.2841 17.4258 13.2528 17.853C12.2215 18.2801 11.1162 18.5 10 18.5C8.88376 18.5 7.77846 18.2801 6.74719 17.853C5.71592 17.4258 4.77889 16.7997 3.98959 16.0104C3.20029 15.2211 2.57419 14.2841 2.14702 13.2528C1.71986 12.2215 1.5 11.1162 1.5 10C1.5 8.88376 1.71986 7.77846 2.14702 6.74719C2.57419 5.71592 3.20029 4.77889 3.98959 3.98959C4.77889 3.20029 5.71592 2.57419 6.74719 2.14702C7.77846 1.71986 8.88377 1.5 10 1.5C11.1162 1.5 12.2215 1.71986 13.2528 2.14702C14.2841 2.57419 15.2211 3.2003 16.0104 3.98959C16.7997 4.77889 17.4258 5.71592 17.853 6.74719C18.2801 7.77846 18.5 8.88377 18.5 10L18.5 10Z" stroke="#737373" stroke-width="3"/>
-                                </svg>
-                            </div>
-                            <div class="note-content">
-                                Watch figma videos
-                            </div>
-                            <div class="note-timer">
-                                9h30m
-                            </div>
-                            <div class="note-mover">
-                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M5.20837 7.29163H19.7917" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                    <path d="M5.20837 12.5H19.7917" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                    <path d="M5.20837 17.7084H19.7917" stroke="#33363F" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                        </div>
                     </div>
                     <div class="non-work-note-bottom">
                         <form id='non-work-note-form'>
@@ -157,11 +139,13 @@ export function createTodayElement() {
     createSideBarElement();
     // });
 
+    //today script
+    todayScript();
+    
     //create task element
     createTaskElement();
 
     document.head.appendChild(cssLink);
-    document.head.appendChild(jsScript);
 
     return;
 }

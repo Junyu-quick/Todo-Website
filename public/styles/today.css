@@ -61,14 +61,16 @@ body {
 
 /* work note */
 
-.note-header{ 
+.work-note-header,
+.non-work-note-header { 
     height: 90px;
     position: relative;
     padding-bottom: 20px;
     display: flex;
 }
 
-.push-button {
+.push-button,
+.non-work-push-button {
     font-family: caveat;
     font-size: 17px;
     font-weight: 400;
@@ -77,6 +79,11 @@ body {
     text-align: right;
     position: relative;
     top: 60px;
+}
+
+.push-button:hover,
+.non-work-push-button:hover {
+    cursor: pointer;
 }
 
 .note-title {
@@ -90,6 +97,17 @@ body {
     margin-left: 127px;
 }
 
+.non-work-note-title {
+    font-family: caveat;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center; 
+    height: 57px;
+    position: relative;
+    top: 45px;
+    margin-left: 87px;
+}
+
 .work-note-middle,
 .non-work-note-middle {
     overflow-x: hidden;
@@ -100,12 +118,14 @@ body {
 }
 
 /* standard for all pages */
-.work-note-line {
+.work-note-line,
+.non-work-note-line {
     display: flex;
     margin-bottom: 3px;
 }
 
-.work-note-bullet-point {
+.work-note-bullet-point,
+.non-work-note-bullet-point {
     flex: 0 0 auto;
     margin-left: 20px;
     height: 24px;
@@ -113,7 +133,13 @@ body {
     margin-top: 3px;
 }
 
-.work-note-content {
+.work-note-bullet-point:hover,
+.non-work-note-bullet-point:hover {
+    cursor: pointer;
+}
+
+.work-note-content,
+.non-work-note-content {
     margin-left: 28px;
     width: 241px;
     font-family: caveat;
@@ -121,7 +147,8 @@ body {
     font-size: 1rem;
 }
 
-.work-note-eta {
+.work-note-eta,
+.non-work-note-eta {
     font-family: caveat;
     font-weight: 400;
     font-size: 1rem;
@@ -129,15 +156,23 @@ body {
     margin-left: 20px;
 }
 
-.work-note-delete {
+.work-note-delete,
+.non-work-note-delete {
     margin-left: 18px;
     margin-right: 20px;
     margin-top: 2px;
     height: 24px;
 }
 
+.work-note-delete:hover,
+.non-work-note-delete:hover {
+    cursor: pointer;
+}
+
 .work-note-content input,
-.work-note-eta input {
+.work-note-eta input,
+.non-work-note-content input,
+.non-work-note-eta input {
     background-color:#b0cece;
     border: none;
     font-family: caveat;
@@ -219,17 +254,7 @@ body {
     font-family: caveat;
 }
 
-.note-content input,
-.note-timer input {
-    background-color:#b0cece;
-    border: none;
-    font-family: caveat;
-    font-size: 1rem;
-    width: 100%
-}
-
-.invalid-input-border {
-    border-style: solid;
-    border-color: red;
-    border-width: 1px;
-}
+#submit-work-form-button:hover,
+#submit-non-work-form-button:hover {
+    cursor: pointer;
+} 
