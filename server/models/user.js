@@ -6,6 +6,26 @@ const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const config = require('config');
 
+const quoteSchema= new mongoose.Schema({
+    quote: {
+        type: String,
+        required: true,
+        default: 'Set Your Quote',
+        maxlength: 50
+    },
+    description: {
+        type: String,
+        required: true,
+        default: `Visit Setting's Page To Set It Up.`,
+        maxlength: 100
+    },
+    checked: {
+        type: Boolean,
+        required: true,
+        default: true
+    }
+})
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -19,7 +39,9 @@ const userSchema = new mongoose.Schema({
         minlength: 5,
         maxlength: 1024
     },
+    quotes: [quoteSchema],
     isAdmin: Boolean
+    
 });
 
 userSchema.methods.generateAuthToken = function() {

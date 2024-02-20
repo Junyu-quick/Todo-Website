@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const {User, validate} = require('../models/user.js');
 const {Work} = require('../models/work.js');
 const {NonWork} = require('../models/nonwork.js');
+const auth = require('../middleware/auth.js');
 const _ = require('lodash');
 
 router.post('/create', async (req, res) => {
@@ -45,5 +46,35 @@ router.post('/create', async (req, res) => {
     return res.header('x-auth-token', token).send();
 })
 
+
+//retrieving quotes
+router.get('/quote', auth, async (req, res) => {
+    const decoded = req.user;
+
+    let user = await User.findOne({_id: decoded._id});
+    if (!user) res.status(404).send('User not found.')
+
+    const quotesArray = user.quotes;
+
+
+    res.send(quotesArray);
+})
+
+//req.body [{quote: ..., description:..., checked:...}, {quote: ..., description:...}]
+
+//setting quotes 
+router.post('/quote/create', auth, async (req, res) => {
+    const decoded = req.user;
+
+    let user = await User.findOne({_id: decoded._id});
+    if (!user) return res.status(404).send('User not found.');
+
+    console.log(user)
+    console.log(user.quotes)
+    user.quotes = req.body;
+
+    await user.save();
+    res.send('New quote(s) added successfully.');
+})
 
 module.exports = router;
