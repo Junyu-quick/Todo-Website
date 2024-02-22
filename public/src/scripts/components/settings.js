@@ -1,7 +1,196 @@
 //script for animation
 //sending http req to server to store results of the sidebar stuff: quote, profile, etc
 export function settingScript() {
-    // settings sidebar
+    const  jwt = localStorage.getItem('jwt');
+
+    // generate the default quotes on the page 
+    fetch('http://localhost:3000/user/quote', {
+        methods: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': jwt
+        },
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error fetching Quotes.');
+            }
+            return response.json()
+        })
+        .then(data => {
+            //data format [{quote, desc, checked},..]
+            const quoteFormElement = document.querySelector('#quote-form');
+            
+            
+            console.log(data)
+        
+            data.forEach((quote, index, array) => {
+                const quoteNumberElement = document.querySelectorAll('.quote-number');
+                const quoteContainer = document.createElement('div');
+                quoteContainer.classList.add('quote-container');
+
+                quoteContainer.innerHTML =
+                `
+                    <div class="quote-number medium-font">
+                    Quote ${quoteNumberElement.length + 1}
+                    </div>
+                    <div class="quote-sentence-description small-font">
+                        <label for="quote-sentence">
+                            Quote:
+                        </label>
+                        <input class="quote-sentence" type="text" value=${quote.quote}>
+    
+                        <label for="quote-description">
+                                Description:
+                        </label>
+                        <input class="quote-description" type="text" value=${quote.description}>
+                    </div>
+                    <div class="quote-circle">
+                        <input class="quote-radio" name="display-button" value="true" type="radio">
+                    </div>
+                `
+
+                //make radio button checked
+                const quoteRadioElement = quoteContainer.querySelector('.quote-radio');
+                quoteRadioElement.checked = quote.checked;
+
+                quoteFormElement.appendChild(quoteContainer);
+            });
+
+            
+            console.log('Quote displayed successfully.')
+        })
+        .catch(error => {
+            console.log('Error: ', error)
+        })
+
+
+
+    //create new html to add the quotes
+    const addQuoteButton = document.querySelector('.add-quote-section');
+
+    addQuoteButton.addEventListener('click', () => {
+        console.log('quote button clicked.');
+
+        const quoteFormElement = document.querySelector('#quote-form');
+        const quoteNumberElement = document.querySelectorAll('.quote-number');
+        
+        const quoteContainer = document.createElement('div');
+        quoteContainer.classList.add('quote-container');
+        quoteContainer.innerHTML =
+        `
+            <div class="quote-number medium-font">
+            Quote ${quoteNumberElement.length + 1}
+            </div>
+            <div class="quote-sentence-description small-font">
+                <label for="quote-sentence">
+                    Quote:
+                </label>
+                <input class="quote-sentence" type="text">
+
+                <label for="quote-description">
+                        Description:
+                </label>
+                <input class="quote-description" type="text">
+            </div>
+            <div class="quote-circle">
+                <input class="quote-radio" name="display-button" value="true" type="radio">
+            </div>
+        `
+
+        quoteFormElement.appendChild(quoteContainer);
+    })
+
+    //listen for input and send fetch too save the new quote list 
+    const quoteFormElement = document.querySelector('#quote-form');
+    let timeOutId;
+    quoteFormElement.addEventListener('input', () => {
+        console.log('quote input')
+
+        //quotes array: [{quote: ..., description:..., checked:...}, {quote: ..., description:...}]
+        //req.body wil be same
+        const quoteSentenceElements = Array.from(document.querySelectorAll('.quote-sentence'));
+        const quoteDescriptionElements = Array.from(document.querySelectorAll('.quote-description'));
+        const quoteCircleElements = Array.from(document.querySelectorAll('.quote-radio'));
+        
+        
+
+
+        clearTimeout(timeOutId);
+
+        timeOutId = setTimeout(() => {
+            let quoteArray = [];
+            let validated = true;
+            quoteSentenceElements.forEach((quoteSetence, index, array) => {
+                //reset invalid border
+                quoteSentenceElements[index].style.border = 'none';
+                quoteDescriptionElements[index].style.border = 'none';
+
+                //validation
+                if (!quoteSentenceElements[index].value) {
+                    quoteSentenceElements[index].style.border = 'solid';
+                    quoteSentenceElements[index].style.borderColor = 'red';
+                    quoteSentenceElements[index].style.borderWidth = '1px';
+                    validated = false;
+                } 
+                if (!quoteDescriptionElements[index].value) {
+                    quoteDescriptionElements[index].style.border = 'solid';
+                    quoteDescriptionElements[index].style.borderColor = 'red';
+                    quoteDescriptionElements[index].style.borderWidth = '1px';
+                    validated = false;
+                }
+                if (quoteSentenceElements[index].value.length >= 52) {
+                    quoteSentenceElements[index].value += " (Character Limit Exceeded: Limit Of 52.)"
+                    quoteSentenceElements[index].style.border = 'solid';
+                    quoteSentenceElements[index].style.borderColor = 'red';
+                    quoteSentenceElements[index].style.borderWidth = '1px';
+                    validated = false;
+                }
+                if (quoteDescriptionElements[index].value.length >= 100) {
+                    quoteDescriptionElements[index].value += " (Character Limit Exceeded: Limit Of 100.)"
+                    quoteDescriptionElements[index].style.border = 'solid';
+                    quoteDescriptionElements[index].style.color = 'red';
+                    quoteDescriptionElements[index].style.borderWidth = '1px';
+                    validated = false;
+                }
+
+                console.log(quoteCircleElements[index].checked)
+                let quoteObject = {
+                    quote: quoteSentenceElements[index].value,
+                    description: quoteDescriptionElements[index].value,
+                    checked: quoteCircleElements[index].checked
+                }
+                quoteArray.push(quoteObject);
+            })
+
+            if (!validated) return console.log('Invalid Input.');
+        
+            //if validated true, run this 
+            fetch('http://localhost:3000/user/quote/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': jwt
+                },
+                body: JSON.stringify(quoteArray)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to save quotes to DB');
+                    }
+                    //update the page quote
+                    updatePageQuote();
+                    console.log('Quotes successfully saved to DB.');
+                })
+                .catch(error => {
+                    console.log('Error: ', error);
+                })
+        }, 1000)
+    })
+    
+
+
+    // settings sidebar event litener for animation
     let settingButtonElement = document.getElementById('settings');
     let settingMainElement = document.getElementById('setting-sidebar');
     let settingMenuElement = document.querySelectorAll('.settings-sidebar');
@@ -69,5 +258,55 @@ export function settingScript() {
         }, 1)
         });
     }
+
+
+//to update the main page quote
+function updatePageQuote() {
+    fetch('http://localhost:3000/user/quote', {
+            methods: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': jwt
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error fetching Quotes.');
+                }
+                return response.json()
+            })
+            .then(data => {
+                //data format [{quote, desc, checked},..]
+                let quoteObject;
+                data.forEach((quote) => {
+                    if (quote.checked === true) {
+                        quoteObject = quote;
+                    }
+                });
+
+                let quoteElement = document.querySelector('.today-quote');
+                let quoteDescriptionElement = document.querySelector('.today-quote-description');
+                
+                //if its history page use this instead
+                if (!quoteElement || !quoteDescriptionElement) {
+                    quoteElement = document.querySelector('.history-quote');
+                    quoteDescriptionElement = document.querySelector('.history-quote-description');
+                }
+
+                quoteElement.innerHTML = 
+                `
+                ${quoteObject.quote}
+                `
+
+                quoteDescriptionElement.innerHTML = 
+                `
+                ${quoteObject.description}
+                `
+                console.log('Quote displayed successfully on today page.')
+            })
+            .catch(error => {
+                console.log('Error: ', error)
+            })
+}
 
 };

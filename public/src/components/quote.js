@@ -1,4 +1,5 @@
 //used to generate template for quote and importing script for quote 
+//delete this
 export function createQuoteElement() {
     let cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';

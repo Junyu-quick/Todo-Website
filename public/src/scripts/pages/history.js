@@ -156,7 +156,50 @@ export function historyScript() {
             .catch(error => {
                 console.error('Error: ', error );
             })
+
+            //fetch the quotes for display
+            fetch('http://localhost:3000/user/quote', {
+            methods: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': jwt
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error fetching Quotes.');
+                }
+                return response.json()
+            })
+            .then(data => {
+                //data format [{quote, desc, checked},..]
+                let quoteObject;
+                data.forEach((quote, index, array) => {
+                    if (quote.checked === true) {
+                        quoteObject = quote;
+                    }
+                });
+
+                const quoteElement = document.querySelector('.history-quote');
+                const quoteDescriptionElement = document.querySelector('.history-quote-description');
+                
+                quoteElement.innerHTML = 
+                `
+                ${quoteObject.quote}
+                `
+
+                quoteDescriptionElement.innerHTML = 
+                `
+                ${quoteObject.description}
+                `
+                console.log('Quote displayed successfully on history page.')
+            })
+            .catch(error => {
+                console.log('Error: ', error)
+            })
     };
+
+    
 
     let formatButtonElement = document.getElementById("format-button");
 

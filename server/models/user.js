@@ -10,7 +10,7 @@ const quoteSchema= new mongoose.Schema({
     quote: {
         type: String,
         required: true,
-        default: 'Set Your Quote',
+        default: 'Set Your Quote.',
         maxlength: 50
     },
     description: {

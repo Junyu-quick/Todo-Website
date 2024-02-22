@@ -48,6 +48,8 @@
 /* quote */
 .quote-container {
     display: flex;
+    margin-top: 30px;
+    margin-left: 15px;
     margin-bottom: 20px;
 }
 
@@ -55,7 +57,9 @@
     flex: 0 0 auto;
     white-space: nowrap;
     border-radius:  10px;
-    background-color: darkgrey;
+    background-color: #ECBEA3;
+    border-style: solid;
+    border-width: 1px;
     width: 120px;
     height: 2.5rem;
     text-align: center;
@@ -67,13 +71,22 @@
     margin-left: 10px;
 }
 
-.quote-sentence-description input {
-    background-color: var(--standard-grey);
+.quote-sentence {
+    background-color: #ECBEA3;
+    width: 150px;
     border: none;
 }
 
-.quote-circle {
-    margin-right: 10px;
+.quote-description {
+    background-color: #ECBEA3;
+    width: 150px;
+    border: none;
+}
+
+.quote-radio {
+    border-style: solid;
+    background-color: aqua;
+    margin-right: 20px;
 }
 
 #quote-interval {
@@ -81,8 +94,8 @@
     height: 90px;
 }
 
-.add-quote-button {
-    margin-left: 225px;
+.add-quote-section {
+    margin-left: 215px;
 }
 
 

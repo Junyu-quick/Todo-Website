@@ -54,8 +54,12 @@ export function createTodayElement() {
         </div>
     </div>
     <div class="middle-section">
-        <div class="today-quote">
-        The Calm Rush 
+        <div class="today-quote-container">
+            <div class="today-quote">
+                Set Your Quote 
+            </div>
+        </div>
+        <div class="today-quote-description">test
         </div>
     </div>
     <div class="bottom-section">

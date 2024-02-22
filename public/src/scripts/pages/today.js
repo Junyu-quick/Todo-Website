@@ -114,6 +114,46 @@ export function todayScript() {
             .catch(error => {
                 console.log('Error:', error);
             })
+
+        fetch('http://localhost:3000/user/quote', {
+            methods: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': jwt
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error fetching Quotes.');
+                }
+                return response.json()
+            })
+            .then(data => {
+                //data format [{quote, desc, checked},..]
+                let quoteObject;
+                data.forEach((quote) => {
+                    if (quote.checked === true) {
+                        quoteObject = quote;
+                    }
+                });
+
+                const quoteElement = document.querySelector('.today-quote');
+                const quoteDescriptionElement = document.querySelector('.today-quote-description');
+                
+                quoteElement.innerHTML = 
+                `
+                ${quoteObject.quote}
+                `
+
+                quoteDescriptionElement.innerHTML = 
+                `
+                ${quoteObject.description}
+                `
+                console.log('Quote displayed successfully on today page.')
+            })
+            .catch(error => {
+                console.log('Error: ', error)
+            })
     }
 
     //1(W)event listener for editing desc, eta elements for work
@@ -495,5 +535,26 @@ export function todayScript() {
         }     
     })
 
+    //(EXTRA) event listener for quote animation
+    const todayQuoteElement = document.querySelector('.today-quote');
+    todayQuoteElement.addEventListener('mouseenter', () => {
+        const todayQuoteDescElement = document.querySelector('.today-quote-description');
+        todayQuoteDescElement.classList.remove('move-out');
+        setTimeout(() => {
+            todayQuoteDescElement.classList.add('move-in');
+        }, 1)
+    })
+
+    todayQuoteElement.addEventListener('mouseleave', () => {
+        const todayQuoteDescElement = document.querySelector('.today-quote-description');
+        todayQuoteDescElement.classList.remove('move-in');
+        setTimeout(() => {
+            todayQuoteDescElement.classList.add('move-out');
+            setTimeout(() => {
+                todayQuoteDescElement.classList.remove('move-out');
+            }, 710)
+        }, 1)
+
+    })
 
 };
