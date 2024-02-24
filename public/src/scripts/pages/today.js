@@ -138,7 +138,7 @@ export function todayScript() {
                 });
 
                 const quoteElement = document.querySelector('.today-quote');
-                const quoteDescriptionElement = document.querySelector('.today-quote-description');
+                const quoteDescriptionElement = document.querySelector('.today-centered-text');
                 
                 quoteElement.innerHTML = 
                 `
@@ -539,10 +539,13 @@ export function todayScript() {
     const todayQuoteElement = document.querySelector('.today-quote');
     todayQuoteElement.addEventListener('mouseenter', () => {
         const todayQuoteDescElement = document.querySelector('.today-quote-description');
-        todayQuoteDescElement.classList.remove('move-out');
+        let time = 1;
+        if (todayQuoteDescElement.classList.contains('move-out')) {
+           time = 300; 
+        }
         setTimeout(() => {
             todayQuoteDescElement.classList.add('move-in');
-        }, 1)
+        }, time)
     })
 
     todayQuoteElement.addEventListener('mouseleave', () => {

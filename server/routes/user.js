@@ -77,4 +77,30 @@ router.post('/quote/create', auth, async (req, res) => {
     res.send('New quote(s) added successfully.');
 })
 
+
+router.get('/profile', auth, async (req, res) => {
+    const decoded = req.user;
+
+    let user = await User.findOne({_id: decoded._id});
+    if (!user) return res.status(404).send('User not found.');
+
+
+    return res.send({userName: user.username});
+})
+
+router.post('/change', auth, async (req, res) => {
+    const decoded = req.user;
+
+    let user = await User.findOne({_id: decoded._id});
+    if (!user) return res.status(404).send('User not found.');
+
+    const salt = await bcrypt.genSalt(10);
+    user.username = req.body.username;
+    user.password = await bcrypt.hash(req.body.password, salt);
+    await user.save();
+    
+    return res.send('Password saved sucessfully.')
+})
+
+
 module.exports = router;

@@ -18,12 +18,12 @@ export function createTodayElement() {
 
     //remove the prev page's body and script/link tag
     // document.addEventListener('DOMContentLoaded', () => {
-        document.body.innerHTML = '';
+    document.body.innerHTML = '';
     // });
     removeLinkTags();
     removeScriptTags();
 
-
+   
     //add new page script/link tag for default page
     let cssLink = document.createElement('link');
     cssLink.rel = 'stylesheet';
@@ -59,7 +59,10 @@ export function createTodayElement() {
                 Set Your Quote 
             </div>
         </div>
-        <div class="today-quote-description">test
+        <div class="today-quote-description">
+            <div class="today-centered-text"> 
+                test
+            </div>
         </div>
     </div>
     <div class="bottom-section">

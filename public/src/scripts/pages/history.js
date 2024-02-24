@@ -181,7 +181,7 @@ export function historyScript() {
                 });
 
                 const quoteElement = document.querySelector('.history-quote');
-                const quoteDescriptionElement = document.querySelector('.history-quote-description');
+                const quoteDescriptionElement = document.querySelector('.history-centered-text');
                 
                 quoteElement.innerHTML = 
                 `
@@ -212,4 +212,29 @@ export function historyScript() {
         
     }); 
 
+
+    //(EXTRA) event listener for quote animation
+    const historyQuoteElement = document.querySelector('.history-quote');
+    historyQuoteElement.addEventListener('mouseenter', () => {
+        const historyQuoteDescElement = document.querySelector('.history-quote-description');
+        let time = 1;
+        if (historyQuoteDescElement.classList.contains('move-out')) {
+           time = 300; 
+        }
+        setTimeout(() => {
+            historyQuoteDescElement.classList.add('move-in');
+        }, time)
+    })
+
+    historyQuoteElement.addEventListener('mouseleave', () => {
+        const historyQuoteDescElement = document.querySelector('.history-quote-description');
+        historyQuoteDescElement.classList.remove('move-in');
+        setTimeout(() => {
+            historyQuoteDescElement.classList.add('move-out');
+            setTimeout(() => {
+                historyQuoteDescElement.classList.remove('move-out');
+            }, 710)
+        }, 1)
+
+    })
 };

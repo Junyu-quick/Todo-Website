@@ -9,7 +9,6 @@ export function pathChange() {
     const createPage = {
         '/login': createLoginElement,
         '/today': createTodayElement,
-        '/longterm': createLongTermElement,
         '/history': createHistoryElement
     };
     

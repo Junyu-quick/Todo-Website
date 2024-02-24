@@ -44,19 +44,19 @@ export function createSettingsElement() {
                 Profile
             </div>
             <hr>
-            <div class="profile-pic "></div>
-            <div class=".settings-content">
+            <form class="settings-content">
                 <label>
-                    Username
-                    <input type="text">
+                    Username:
+                    <input id="user-name" type="text" value="">
                 </label>
-            </div>
-            <div class=".settings-content">
                 <label>
-                    Password
-                    <input type="password">
+                    Password:
+                    <input id="user-password" type="password" value="0000" placeholder="New Password">
                 </label>
-            </div>  
+                <button id="password-confirm" type="submit"> 
+                    Confirm
+                </div>
+            </form>  
         </div>     
         <div id="quote-sidebar" class="settings-sidebar">
             <div class="settings-back-button" data-element-id="quote-sidebar">

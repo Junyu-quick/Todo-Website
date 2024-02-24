@@ -42,7 +42,6 @@ export function createSideBarElement() {
                     </div>
                     <div class="page-sidebar-nav small-font">
                         <a class="sidebar-link" href="/today">Today</a>
-                        <a class="sidebar-link" href="/longterm">Long-Term</a>
                         <a class="sidebar-link" href="/history">History</a>
                     </div>
                     

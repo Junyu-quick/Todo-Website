@@ -1,6 +1,5 @@
 import { createHistoryElement } from "./src/pages/history.js";
 import { createLoginElement } from "./src/pages/login.js";
-import { createLongTermElement } from "./src/pages/longterm.js";
 import { createTodayElement } from "./src/pages/today.js";
 import { pathChange } from "./startup/path.js";
 
@@ -10,7 +9,6 @@ const pathList = {
     '/': createLoginElement,
     '/login': createLoginElement,
     '/today': createTodayElement,
-    '/longterm': createLongTermElement,
     '/history': createHistoryElement
 };
 

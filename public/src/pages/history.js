@@ -51,10 +51,15 @@ export function createHistoryElement() {
         </div>
     </div>
     <div class="middle-section">
-        <div class="history-quote">
-        The Calm Rush 
+        <div class="history-quote-container">
+            <div class="history-quote">
+                The Calm Rush
+            </div>
         </div>
-        <div class="history-quote-description">test
+        <div class="history-quote-description">
+            <div class="history-centered-text"> 
+                test
+            </div>
         </div>
     </div>
     <div class="bottom-section">

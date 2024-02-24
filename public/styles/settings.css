@@ -32,7 +32,7 @@
 
 }
 
-.nav, .settings-content {
+.nav {
     text-align: right;
     font-family: caveat;
     font-size: 1.5rem;
@@ -41,8 +41,39 @@
     padding-right: 40px;
 }
 
+.settings-content {
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-top: 200px;
+    margin-right: 70px;
+    margin-left: 140px;
+}
+
+
+#user-password, #user-name {
+    background-color: #ECBEA3;
+    border-style: none;
+    margin-bottom: 10px;
+    width: 130px;
+    border: 1px solid black;
+}
+
 .nav:hover {
     font-weight:800;
+}
+
+#password-confirm {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #ECBEA3;
+    margin-left: 70px;
+    margin-top: 20px;
+    font-size: 1.4rem;
+}
+
+#password-confirm:hover {
+    background-color: bisque;
+    cursor: pointer;
 }
 
 /* quote */

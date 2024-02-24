@@ -5,7 +5,7 @@ export function settingScript() {
 
     // generate the default quotes on the page 
     fetch('http://localhost:3000/user/quote', {
-        methods: 'GET',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'x-auth-token': jwt
@@ -31,19 +31,19 @@ export function settingScript() {
 
                 quoteContainer.innerHTML =
                 `
-                    <div class="quote-number medium-font">
+                    <div class="quote-number">
                     Quote ${quoteNumberElement.length + 1}
                     </div>
-                    <div class="quote-sentence-description small-font">
+                    <div class="quote-sentence-description">
                         <label for="quote-sentence">
                             Quote:
                         </label>
-                        <input class="quote-sentence" type="text" value=${quote.quote}>
+                        <input class="quote-sentence" type="text" value="${quote.quote}">
     
                         <label for="quote-description">
                                 Description:
                         </label>
-                        <input class="quote-description" type="text" value=${quote.description}>
+                        <input class="quote-description" type="text" value="${quote.description}">
                     </div>
                     <div class="quote-circle">
                         <input class="quote-radio" name="display-button" value="true" type="radio">
@@ -79,10 +79,10 @@ export function settingScript() {
         quoteContainer.classList.add('quote-container');
         quoteContainer.innerHTML =
         `
-            <div class="quote-number medium-font">
+            <div class="quote-number">
             Quote ${quoteNumberElement.length + 1}
             </div>
-            <div class="quote-sentence-description small-font">
+            <div class="quote-sentence-description">
                 <label for="quote-sentence">
                     Quote:
                 </label>
@@ -260,53 +260,115 @@ export function settingScript() {
     }
 
 
-//to update the main page quote
-function updatePageQuote() {
-    fetch('http://localhost:3000/user/quote', {
-            methods: 'GET',
+    //to update the main page quote
+    function updatePageQuote() {
+        fetch('http://localhost:3000/user/quote', {
+                methods: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': jwt
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error fetching Quotes.');
+                    }
+                    return response.json()
+                })
+                .then(data => {
+                    //data format [{quote, desc, checked},..]
+                    let quoteObject;
+                    data.forEach((quote) => {
+                        if (quote.checked === true) {
+                            quoteObject = quote;
+                        }
+                    });
+
+                    let quoteElement = document.querySelector('.today-quote');
+                    let quoteDescriptionElement = document.querySelector('.today-centered-text');
+                    
+                    //if its history page use this instead
+                    if (!quoteElement || !quoteDescriptionElement) {
+                        quoteElement = document.querySelector('.history-quote');
+                        quoteDescriptionElement = document.querySelector('.history-centered-text');
+                    }
+
+                    quoteElement.innerHTML = 
+                    `
+                    ${quoteObject.quote}
+                    `
+
+                    quoteDescriptionElement.innerHTML = 
+                    `
+                    ${quoteObject.description}
+                    `
+                    console.log('Quote displayed successfully on today page.')
+                })
+                .catch(error => {
+                    console.log('Error: ', error)
+                })
+    }
+
+
+
+    //fetch username and password 
+    fetch('http://localhost:3000/user/profile', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-auth-token': jwt
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch the username.')
+            }
+            return response.json();
+        })
+        .then(data => {
+            const userNameElement = document.getElementById('user-name');
+            userNameElement.value = data.userName;
+        })
+    
+
+    //evente listener for button
+    const profileForm = document.querySelector('.settings-content');
+    profileForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const passWordButton = document.getElementById('password-confirm');
+        
+        
+
+        const newUserName = document.getElementById('user-name').value;
+        const newPassword = document.getElementById('user-password').value;
+
+        fetch('http://localhost:3000/user/change', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'x-auth-token': jwt
             },
+            body: JSON.stringify({
+                username: newUserName,
+                password: newPassword
+            })
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Error fetching Quotes.');
-                }
-                return response.json()
-            })
-            .then(data => {
-                //data format [{quote, desc, checked},..]
-                let quoteObject;
-                data.forEach((quote) => {
-                    if (quote.checked === true) {
-                        quoteObject = quote;
-                    }
-                });
-
-                let quoteElement = document.querySelector('.today-quote');
-                let quoteDescriptionElement = document.querySelector('.today-quote-description');
-                
-                //if its history page use this instead
-                if (!quoteElement || !quoteDescriptionElement) {
-                    quoteElement = document.querySelector('.history-quote');
-                    quoteDescriptionElement = document.querySelector('.history-quote-description');
+                    throw new Error('Fail to change password.');
                 }
 
-                quoteElement.innerHTML = 
-                `
-                ${quoteObject.quote}
-                `
-
-                quoteDescriptionElement.innerHTML = 
-                `
-                ${quoteObject.description}
-                `
-                console.log('Quote displayed successfully on today page.')
+                passWordButton.style.borderColor = 'green';
+                passWordButton.style.borderWidth = '3px';
+                setTimeout(() => {
+                    passWordButton.style.borderColor = 'black';
+                    passWordButton.style.borderWidth = '1px';
+                }, 3000);
             })
             .catch(error => {
                 console.log('Error: ', error)
             })
-}
-
+    })
 };
+

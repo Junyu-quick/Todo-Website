@@ -46,21 +46,41 @@ body {
 
 /* middle section */
 
-
-.history-quote {
+.history-quote-container {
     font-family: caveat;
     font-size: 2.2rem;
     font-weight: 500;
-    text-align: center;
     padding-top: 15vh;
     margin-bottom: 80px;
+    display: flex;
+}
+
+.history-quote {
+    justify-content: center;
+    margin: auto;
 }
 
 .history-quote-description {
     font-family: caveat;
-    font-size: 2.2rem;
+    font-size: 1rem;
     font-weight: 500;
+    position: absolute;
+    width: 400px;
+    height: 160px;
+    border-style: solid;
+    border-color: black;
+    top: -1000px;
+    left: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.history-centered-text {
     text-align: center;
+    white-space: normal;
+    text-wrap: balance;
 }
 
 /* bottom section */
@@ -236,4 +256,30 @@ body {
     font-family: caveat;
     font-size: 1rem;
     font-weight:400;
+}
+
+
+
+/* animation for quotes 201 150 */
+@keyframes move-in {
+    0% {
+        top: -1000px;
+    }
+
+    60%,
+    100% {
+        top: 120px;
+    }
+
+    80% {
+        top: 140px;
+    }
+}
+
+.move-in {
+    animation: move-in 0.7s ease-out forwards;
+}
+
+.move-out {
+    animation: move-in 0.7s ease-out reverse forwards;
 }
