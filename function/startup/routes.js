@@ -9,7 +9,7 @@ const longterm = require('../routes/longterm.js');
 const history = require('../routes/history.js');
 const error = require('../middleware/error.js');
 
-module.exports = function(app) {
+export function routes(app) {
     app.use(express.static(path.join(__dirname, '../../public')));
     app.use(express.json());
     app.use('', index);

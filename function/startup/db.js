@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-module.exports = function() {
+export function db() {
     const dbConnectionString = "mongodb+srv://jake:iVifDRVyZc4894jo@cluster0.umpeezj.mongodb.net/";
 
     mongoose.connect(dbConnectionString)
