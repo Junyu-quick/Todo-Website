@@ -1,7 +1,7 @@
 import {LambdaClient, GetAccountSettingsCommand} from '@aws-sdk/client-lambda';
 // Create client outside of handler to reuse
 const lambda = new LambdaClient();
-const express = require('express');
+import express from 'express';
 const app = express();
 
 // Handler
