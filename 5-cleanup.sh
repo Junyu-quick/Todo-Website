@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-STACK=nodejs-apig
+STACK=Todo-Website
 if [[ $# -eq 1 ]] ; then
     STACK=$1
     echo "Deleting stack $STACK"
